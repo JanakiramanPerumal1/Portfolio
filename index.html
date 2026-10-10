@@ -187,7 +187,9 @@ $('#cm').textContent=Math.floor(t/6e4).toLocaleString();$('#cs').textContent=Mat
 {const yrs=(Date.now()-START)/(365.25*864e5),r=Math.round(yrs*2)/2,t=(Number.isInteger(r)?r:r.toFixed(1))+' years';
 $('#hl').textContent=t;document.querySelectorAll('.yrs').forEach(e=>e.textContent=t)}
 /* resume file: must sit in the same folder as index.html with exactly this name */
-const RESUME='Janakiraman_Perumal_Resume.pdf';$('#dl').href=RESUME;
+const RESUME = 'resume/Janakiraman_Perumal_Resume.pdf';
+$('#dl').href = RESUME;
+$('#dl').setAttribute('download', 'Janakiraman_Perumal_Resume.pdf');
 tick();setInterval(tick,1000);
 const POSTS=[
 {t:'Stop bad API specs before they ship',d:'API governance',x:['Every API contract is a promise. If the OpenAPI file is wrong, every consumer pays for it later.','At NatWest I build services that validate specifications automatically, with custom Spectral rules written in JavaScript. The rules run inside CI/CD, so a non-compliant spec fails the pipeline instead of reaching production.','Lesson: write rules that explain how to fix the problem, not only what broke. Developers follow clear errors.']},
