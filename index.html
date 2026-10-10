@@ -18,7 +18,7 @@ a{color:inherit;text-decoration:none}:focus-visible{outline:3px solid var(--ambe
 /* background scene */
 #sky{position:fixed;inset:0;z-index:0;background:radial-gradient(1100px 700px at 78% 18%,#143a8a55,transparent 62%),radial-gradient(900px 600px at 8% 92%,#0a527044,transparent 62%),linear-gradient(180deg,#060a18,#0a1228)}
 #photo{position:fixed;inset:0;z-index:0;background:var(--photo) center/cover;opacity:.7}
-#flow{position:fixed;inset:0;z-index:0;width:100%;height:100%;opacity:.55}
+#flow{position:fixed;inset:0;z-index:0;width:100%;height:100%;opacity:.15}
 .hx{position:relative}
 .hx:before{content:"";position:absolute;inset:-60px -90px -40px -120px;z-index:-1;background:radial-gradient(ellipse at 45% 50%,rgba(6,10,24,.92) 0,rgba(6,10,24,.75) 45%,transparent 74%);pointer-events:none}
 @keyframes bob{50%{transform:translateY(-14px)}}
@@ -227,9 +227,9 @@ nodes=(sm?[LANES[0]]:LANES).map(L=>L.n.map((t,i)=>{t=sm?t.replace('Spring Boot s
 layout();addEventListener('resize',layout);
 function rr(x,y,w,h,r){cx.beginPath();cx.moveTo(x+r,y);cx.arcTo(x+w,y,x+w,y+h,r);cx.arcTo(x+w,y+h,x,y+h,r);cx.arcTo(x,y+h,x,y,r);cx.arcTo(x,y,x+w,y,r);cx.closePath()}
 function draw(t){const dt=Math.min((t-last)/1000||0,.05);last=t;cx.clearRect(0,0,W,H);
-cx.strokeStyle='rgba(120,160,255,.05)';cx.lineWidth=1;cx.beginPath();for(let x=0;x<W;x+=56){cx.moveTo(x,0);cx.lineTo(x,H)}for(let y=0;y<H;y+=56){cx.moveTo(0,y);cx.lineTo(W,y)}cx.stroke();
+cx.strokeStyle='rgba(120,160,255,.01)';cx.lineWidth=1;cx.beginPath();for(let x=0;x<W;x+=56){cx.moveTo(x,0);cx.lineTo(x,H)}for(let y=0;y<H;y+=56){cx.moveTo(0,y);cx.lineTo(W,y)}cx.stroke();
 cx.font=FS+' ui-monospace,Menlo,Consolas,monospace';cx.textAlign='center';cx.textBaseline='middle';
-nodes.forEach((row,li)=>{cx.setLineDash([5,6]);cx.strokeStyle='rgba(130,175,255,.3)';cx.beginPath();row.forEach((n,i)=>{if(i){const a=row[i-1];cx.moveTo(a.x+a.w/2,a.y);cx.lineTo(n.x-n.w/2,n.y)}});cx.stroke();cx.setLineDash([]);
+nodes.forEach((row,li)=>{cx.setLineDash([5,6]);cx.strokeStyle='rgba(130,175,255,.10)';cx.beginPath();row.forEach((n,i)=>{if(i){const a=row[i-1];cx.moveTo(a.x+a.w/2,a.y);cx.lineTo(n.x-n.w/2,n.y)}});cx.stroke();cx.setLineDash([]);
 row.forEach(n=>{rr(n.x-n.w/2,n.y-14,n.w,28,8);cx.fillStyle='rgba(16,34,80,.55)';cx.fill();cx.strokeStyle='rgba(140,185,255,.5)';cx.stroke();cx.fillStyle='rgba(205,225,255,.85)';cx.fillText(n.t,n.x,n.y+1)})});
 if(!reduce){if(Math.random()<dt*1.6&&pk.length<14){const li=Math.random()*nodes.length|0;pk.push({li,i:0,p:0})}
 pk=pk.filter(k=>{const row=nodes[k.li];if(!row||!row[k.i+1])return false;k.p+=dt*.55;if(k.p>=1){k.p=0;k.i++;if(k.i>=row.length-1)return false}
